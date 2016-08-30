@@ -1,0 +1,143 @@
+* {
+	margin: 0;
+	padding0
+}
+
+.login {
+	background: center;
+	border: #afafaf 3px solid;
+	width: 800px;
+	height: 400px;
+	width: 800px;
+	height: 400px;
+	margin: 100px auto;
+	border-radius: 0 0 8px 8px;
+}
+
+.login .top {
+	background: url(../image/table2.jpg) repeat-x center;
+	width: 800px;
+	height: 64px;
+}
+
+.top .logo {
+	float: left;
+}
+
+.top .wenzi {
+	font-family: "微软雅黑", "宋体";
+	font-size: 20px;
+	width: 100px;
+	height: 24px;
+	padding-top: 17px;
+	float: right;
+}
+
+.login .center {
+	margin-top: 2px;
+	padding-top: 30px;
+}
+
+.center .bt {
+	width: 180px;
+	height: 50px;
+	float: left;
+}
+
+.center .username {
+	height: 40px;
+	padding-top: 7px;
+	padding-left: 60px;
+	width: 270px;
+	font-size: 14px;
+	float: left;
+}
+
+.center .btn1 {
+	width: 70px;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+	border: 0;
+	letter-spacing: 1px;
+	background: #3385ff;
+	border-bottom: 2px solid #2d78f4;
+	outline: medium;
+	cursor: pointer;
+	float: left;
+	margin-left: 100px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.btn1:hover {
+	background-color: #CCC;
+}
+
+.center .btn2 {
+	width: 70px;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+	border: 0;
+	letter-spacing: 1px;
+	background: #3385ff;
+	border-bottom: 2px solid #2d78f4;
+	outline: medium;
+	cursor: pointer;
+	float: left;
+	margin-left: 30px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.btn2:hover {
+	background-color: #CCC;
+}
+
+.s a {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.s a:hover {
+	color: #F00
+}
+
+.code {
+	background: url(code_bg.jpg);
+	font-family: Arial;
+	font-style: italic;
+	color: blue;
+	font-size: 30px;
+	border: 0;
+	padding: 2px 3px;
+	letter-spacing: 3px;
+	font-weight: bolder;
+	float: left;
+	cursor: pointer;
+	width: 150px;
+	height: 50px;
+	line-height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 60px
+}
+
+.s {
+	height: 35px;
+	padding-top: 20px;
+	text-align: center;
+	width: 100px;
+	float: left;
+}
+
+.tp {
+	float: right;
+	margin-right: 10px;
+}
+
+.toupiao {
+	float: right;
+}

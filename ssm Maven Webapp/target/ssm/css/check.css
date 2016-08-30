@@ -1,0 +1,182 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.top {
+	background-image: url(../image/ibj.jpg);
+	height: 66px;
+	margin: 0 auto;
+}
+
+.logo {
+	height: 66px;
+	padding-left: 20px;
+	margin: 0 auto;
+}
+
+.logo .im {
+	background: url(../image/ilogin.jpg);
+	background-repeat: no-repeat;
+	height: 66px;
+	float: left;
+	width: 100%
+}
+
+.bj {
+	float: right;
+	background: url(../image/ibj2.jpg);
+	width: 385px;
+	height: 66px;
+}
+
+.bj .wenzi {
+	font-family: "微软雅黑", "宋体";
+	font-size: 12px;
+	color: #FFF;
+	font-weight: 500;
+	float: left;
+	padding-top: 6px;
+	padding-left: 10px;
+}
+
+.centre {
+	background-image: url(../image/age.jpg);
+	height: 850px;
+	margin: 1px;
+	margin-top: 3px;
+	border: #88a0be 2px solid;
+	border-radius: 8px;
+}
+
+.centre .left {
+	height: 720px;
+	margin-right: 1%;
+	margin-left: 2%;
+	margin-top: 2%;
+	background-color: #FFF;
+	width: 15%;
+	float: left;
+	border: #99bbe8 1px solid;
+}
+
+.centre .right {
+	height: 720px;
+	margin-top: 2%;
+	background-color: #dfe8f6;
+	width: 81%;
+	float: left;
+	border: #99bbe8 1px solid;
+}
+
+.left .lefttop {
+	background-image: url(../image/lefttop.jpg);
+	height: 25px;
+	font-size: 14px;
+	padding-left: 10px;
+	padding-top: 8px;
+}
+
+.course {
+	height: 685px;
+	width: 100%;
+}
+
+.righttop {
+	background-image: url(../image/righttop.jpg);
+	height: 28px;
+	padding-top: 15px;
+	padding-left: 5px;
+	float: left;
+	width: 100%;
+}
+
+.ha {
+	text-align: center;
+	width: 10%;
+	border-right: #FFF 1px solid;
+	float: left;
+	display: inline-block;
+}
+
+.ha1 {
+	text-align: center;
+	width: 15%;
+	border-right: #FFF 1px solid;
+	float: left;
+	display: inline-block;
+}
+
+.ha2 {
+	padding-left: 1%;
+	width: 50%;
+	border-right: #FFF 1px solid;
+	float: right;
+	font-size: 12px;
+	display: inline-block;
+}
+
+.righttop a:hover {
+	background-color: #ccd9e9;
+	font-size: 16px
+}
+
+.righttop2 {
+	background-color: #FFF;
+	height: 710px;
+	margin: 5px;
+}
+
+.rightc {
+	background-image: url(../image/rigthc.jpg);
+	height: 31px;
+	margin-top: 1px;
+	width: 100%
+}
+
+.ri {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	width: 8.8%;
+	float: left;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	display: inline-block;
+	text-align: center;
+	border-right: #99bbe8 1px solid;
+	height: 20px;
+}
+
+.ce {
+	height: 710px;
+}
+
+.kc {
+	background-image: url(../image/rigthc.jpg);
+	height: 26px;
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	padding-top: 5px;
+	margin-bottom: 5px;
+}
+
+.kc a {
+	font-size: 16px;
+}
+
+.kc a:hover {
+	background-color: #ccd9e9;
+	font-size: 18px
+}
+
+.if {
+	width: 100%;
+	height: 100%;
+}

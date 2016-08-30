@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cl.ssm.dao.StudentMapper" >
+  <resultMap id="StudentMap" type="com.cl.ssm.pojo.Student" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="studentid" property="studentid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="psw" property="psw" jdbcType="VARCHAR" />
+    <result column="studentclass" property="studentclass" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="com.cl.ssm.pojo.Student" id="CourseStudentMap" extends="StudentMap">
+  	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coursename" property="coursename" jdbcType="VARCHAR" />
+    <result column="courseclass" property="courseclass" jdbcType="VARCHAR" />
+    <result column="coursetime" property="coursetime" jdbcType="VARCHAR" />
+    <result column="coursebord" property="coursebord" jdbcType="REAL" />
+    <result column="coursecount" property="coursecount" jdbcType="INTEGER" />
+    <result column="coursesy" property="coursesy" jdbcType="INTEGER" />
+    <result column="coursepeople" property="coursepeople" jdbcType="INTEGER" />
+    <result column="cotein" property="cotein" jdbcType="VARCHAR" />
+    <result column="coursetype" property="coursetype" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="courseteacherid" property="courseteacherid" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getStudentByName" resultMap="CourseStudentMap" parameterType="java.lang.String" >
+    select *
+    from t_student
+    where studentid = #{studentid}
+  </select>
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="andy.model.Student" >
+    insert into t_student (id, studentid, name, 
+      psw, studentclass, date, 
+      sex)
+    values (#{id,jdbcType=INTEGER}, #{studentid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{psw,jdbcType=VARCHAR}, #{studentclass,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="andy.model.Student" >
+    insert into t_student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="studentid != null" >
+        studentid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="psw != null" >
+        psw,
+      </if>
+      <if test="studentclass != null" >
+        studentclass,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        #{studentid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="psw != null" >
+        #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="studentclass != null" >
+        #{studentclass,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="andy.model.Student" >
+    update t_student
+    <set >
+      <if test="studentid != null" >
+        studentid = #{studentid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="psw != null" >
+        psw = #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="studentclass != null" >
+        studentclass = #{studentclass,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="andy.model.Student" >
+    update t_student
+    set studentid = #{studentid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      psw = #{psw,jdbcType=VARCHAR},
+      studentclass = #{studentclass,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update> -->
+</mapper>

@@ -1,0 +1,221 @@
+<!-- <%-- <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{padding:0; margin:0px}
+.ce{ height:662px; width:100%  margin: 0 auto;}
+.rightc{ margin-top:3px; width:100%; height:596px;}
+.c{height:35px;}
+.c:hover{background-image:url(image/rigthc.jpg); height:34px;}
+.c1{background-color:#ccd9e9; width:100%; height:35px;}
+.c1:hover{background-image:url(image/rigthc.jpg); height:34px;}
+.ri{font-family:Arial, Helvetica, sans-serif; font-size:14px; width:8.8%; float:left; padding-top: 6px; padding-bottom:6px; display:inline-block; text-align:center;
+ white-space: nowrap;line-height:20px;overflow:hidden; text-overflow: ellipsis; }
+.bottm{background-image:url(image/botmm.jpg); height:33px; }
+.rightc1{background-image:url(image/rigthc.jpg); height:31px; margin-top:1px; width:100%}
+
+</style>
+<script type="text/javascript" src="js/check.js"></script>
+<script type="text/javascript">
+var selAll = document.getElementById("checkAll");
+	function selectAll() {
+	
+		var obj = document.getElementsByName("check");
+		if (document.getElementById("checkAll").checked == false) {
+			for ( var i = 0; i < obj.length; i++) {
+				obj[i].checked = false;
+			}
+		} else {
+			for ( var i = 0; i < obj.length; i++) {
+				obj[i].checked = true;
+				
+			}
+		}
+
+	}
+	function setSelectAll(value) {
+		var obj = document.getElementsByName("check");
+		var count = obj.length;
+		var selectCount = 0;
+		for ( var i = 0; i < count; i++) {
+			if (obj[i].checked == true) {
+				selectCount++;
+			}
+		}
+		if (count == selectCount) {
+			document.getElementById("checkAll").checked = true;
+		} else {
+			document.getElementById("checkAll").checked = false;
+		}
+		//alert(value);
+		return value;
+	}
+
+</script>
+</head>
+
+<body>
+<div class="ce">
+ 				<div class="rightc1">
+					<div class="ri">
+						<input type="checkbox" id="checkAll" onclick="selectAll()" value="all">&nbsp;全选
+					</div>
+					<div class="ri">开课单位</div>
+					<div class="ri">课程类别</div>
+					<div class="ri">课程名称</div>
+					<div class="ri">任课老师</div>
+					<div class="ri">上课时间</div>
+					<div class="ri">学分</div>
+					<div class="ri">剩余容量</div>
+					<div class="ri">选课人数</div>
+					<div class="ri">总容量</div>
+					<div class="ri">选课要求</div>
+				</div>
+<c:choose>
+		<c:when test="${courselist.size()==0||courselist==null }">
+		<div align="center">
+			<a style="font-size:18pt;">没有该类型课程</a>						
+		</div>
+		</c:when>
+		<c:otherwise>
+		
+		<div class="rightc" >
+		<c:forEach items="${courselist}" var="course" varStatus="state">
+		<c:if test="${(state.index+1)%2==1 }">
+   	<div class="c">
+          <div class="ri"><input type="checkbox" name="check" id="check" onclick="setSelectAll(this.value)" value="${course.id }">&nbsp;选择</div>
+          <div class="ri" title="${course.teacher.nameclass }" >${course.teacher.nameclass }</div>
+          <div class="ri" title="${coursetype }" >${coursetype }</div>
+          <div class="ri" title="${course.coursename }">${course.coursename }</div>
+          <div class="ri" title="${course.teacher.name }">${course.teacher.name }</div>
+          <div class="ri" title="${course.coursetime }">${course.coursetime }19:00-21:30</div>
+          <div class="ri" title="${course.coursebord }">${course.coursebord }</div>
+          <div class="ri" title="${course.coursesy }"><c:if test="${course.coursesy==0 }">
+          <a style="color: red">已满</a></c:if><c:if test="${course.coursesy!=0 }">${course.coursesy }</c:if>
+          </div>
+          <div class="ri" title="${course.coursepeople }">${course.coursepeople }</div>
+          <div class="ri" title="${course.coursecount }">${course.coursecount }</div>
+          <div class="ri" title="${course.cotein }">${course.cotein }</div>
+         </div> 
+      	</c:if>
+        <c:if test="${(state.index+1)%2==0 }">
+         <div class="c1">
+          <div class="ri"><input type="checkbox" name="check" id="check" onclick="setSelectAll(this.value)" value="${course.id }">&nbsp;选择</div>
+          <div class="ri" title="${course.teacher.nameclass }">${course.teacher.nameclass }</div>
+          <div class="ri" title="${coursetype }">${coursetype }</div>
+          <div class="ri" title="${course.coursename }">${course.coursename }</div>
+          <div class="ri" title="${course.teacher.name }">${course.teacher.name }</div>
+          <div class="ri" title="${course.coursetime }">${course.coursetime }19:00-21:30</div>
+          <div class="ri" title="${course.coursebord }">${course.coursebord }</div>
+          <div class="ri" title="${course.coursesy }"><c:if test="${course.coursesy==0 }">
+          <a style="color: red">已满</a></c:if><c:if test="${course.coursesy!=0 }">${course.coursesy }</c:if>
+          </div>
+          <div class="ri" title="${course.coursepeople }">${course.coursepeople }</div>
+          <div class="ri" title="${course.coursecount }">${course.coursecount }</div>
+          <div class="ri" title="${course.cotein }">${course.cotein }</div>
+         </div>
+         
+        
+       </c:if>
+       </c:forEach>
+	</div>
+	<div class="bottm">写页码数据nimeide</div>
+		</c:otherwise>
+	</c:choose>
+	</div>
+</body>
+</html> -->
+ 
+<meta charset="utf-8">
+<style>
+*{margin:0;padding:0}
+.righttop {
+	background-image: url(image/righttop.jpg);
+	height: 28px;
+	width: 100%;
+	font-size: 12px;
+	font-weight: 900;
+}
+a {
+	color: #000;
+	text-decoration: none;
+	font-size: 14px;
+}
+a:hover{
+	color:red;
+	text-decoration: none;
+	font-size: 16px;
+}
+.rightc1{background-image:url(image/rigthc.jpg); height:31px;font-size: 12px; width:80%; font-family:Arial, Helvetica, sans-serif;}
+.cent{
+	font-size:14px;
+	font-family:"微软雅黑", "宋体";
+}
+.cent1{
+	font-size:14px;
+	font-family:"微软雅黑", "宋体"; background-color:#3CF;
+}
+.page{
+	background-image:url(image/rigthc.jpg); height:31px;
+	;
+}
+</style>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="710">
+
+  <tr class="righttop" align="center">
+    <td width="5%" height="28" ><a href="">选课</a></td>
+    <td width="9%"><a href="">退选</a></td>
+    <td width="11%"><a href="">查看选课请求</a></td>
+    <td width="14%"><a href="">帮助</a></td>
+    <td colspan="7" style="font-size:16px;" align="left">开课单位:<input type="text"  placeholder="请输入开课单位" style="height:25px; padding: 3px;width: 100px;">
+    	&nbsp;输入关键字:<input type="text" style="height:25px; padding: 3px;width: 100px;"placeholder="请输入关键字" ><input type="button" value="搜索" style="height:25px;"  ></td>
+  </tr>
+  <tr align="center" class="rightc1">
+    <td height="31" ><input type="checkbox" id="checkAll" onclick="selectAll()" value="all">&nbsp;全选</td>
+    <td>开课单位</td>
+    <td>选课类别</td>
+    <td>教学班名称</td>
+    <td>任课老师</td>
+    <td width="12%">上课时间</td>
+    <td width="6%">学分</td>
+    <td>剩余容量</td>
+    <td width="6%">选课人数</td>
+    <td width="5%">总容量</td>
+    <td width="15%">选课要求</td>
+  </tr>
+  <tr>
+    <td colspan="11" height="618" valign="top" >
+    <table width="100%" border="0" cellspacing="0" cellpadding="0"  > 
+    </table>
+    </td>
+    
+  </tr>
+    <tr>
+    <td colspan="11"  height="32" class="page">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%"> 
+    
+   	<tr>
+	   <td align="left" style=" padding-left: 10px; padding-top:10px; font-size:14px; padding-right:10px;font-weight:bolder;color:#999;">
+	   首页&nbsp;
+	   上一页&nbsp;
+	   当前第<input type="text"value="1" disabled style="height:20px; padding:1px;width:20px;">页&nbsp;
+	   下一页&nbsp;
+	   尾页
+	   </td>
+	   
+	   <td align="right" style="padding-right:10px;  font-size:16px; color:#999;">
+	 <strong> 当前无数据</strong>
+	   </td>
+	 </tr>
+	    </table>
+    </td>
+    </tr>
+</table>
+</body>
+
+

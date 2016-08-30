@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	padding: 0
+}
+
+.righttop {
+	background-image: url(../image/righttop.jpg);
+	height: 28px;
+	width: 100%;
+	font-size: 12px;
+	font-weight: 900;
+}
+
+.righttop a {
+	color: #000;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.righttop  a:hover {
+	color: red;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.rightc1 {
+	background-image: url(../image/rigthc.jpg);
+	height: 31px;
+	font-size: 12px;
+	width: 80%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.cent {
+	font-size: 14px;
+	font-family: "微软雅黑", "宋体";
+	white-space: nowrap;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.cent1 {
+	font-size: 14px;
+	font-family: "微软雅黑", "宋体";
+	background-color: #ccd9e9;
+	white-space: nowrap;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.cent:hover {
+	background-image: url(../image/rigthc.jpg);
+}
+
+.cent1:hover {
+	background-image: url(../image/rigthc.jpg);
+}
+
+.page {
+	background-image: url(../image/rigthc.jpg);
+	height: 31px;
+}
+.page a {
+	color: #000;
+	text-decoration: none;
+	font-size: 14px;
+}
+.page a:hover{
+	color:red;
+	text-decoration: none;
+	font-size: 16px;
+}

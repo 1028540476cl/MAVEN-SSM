@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cl.ssm.dao.CourseMapper" >
+  <resultMap id="CourseMap" type="com.cl.ssm.pojo.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coursename" property="coursename" jdbcType="VARCHAR" />
+    <result column="courseclass" property="courseclass" jdbcType="VARCHAR" />
+    <result column="coursetime" property="coursetime" jdbcType="VARCHAR" />
+    <result column="coursebord" property="coursebord" jdbcType="REAL" />
+    <result column="coursecount" property="coursecount" jdbcType="INTEGER" />
+    <result column="coursesy" property="coursesy" jdbcType="INTEGER" />
+    <result column="coursepeople" property="coursepeople" jdbcType="INTEGER" />
+    <result column="cotein" property="cotein" jdbcType="VARCHAR" />
+    <result column="coursetype" property="coursetype" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <association property="teacher" javaType="com.cl.ssm.pojo.Teacher">  
+           <id column="id" property="id" jdbcType="INTEGER" />
+		    <result column="teacherid" property="teacherid" jdbcType="VARCHAR" />
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+		    <result column="nameclass" property="nameclass" jdbcType="VARCHAR" />
+		    <result column="picture" property="picture" jdbcType="VARCHAR" /> 
+        </association> 
+  </resultMap>
+  <resultMap id="StudentCourseMap" type="com.cl.ssm.pojo.Course" extends="CourseMap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="studentid" property="studentid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="psw" property="psw" jdbcType="VARCHAR" />
+    <result column="studentclass" property="studentclass" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 分页查看待选课程 -->
+  <select id = "pageAll" resultMap ="StudentCourseMap" parameterType="Map">
+  select * from t_course
+        <where>
+            <if test="coursetype!=null and coursetype!=''">
+               coursetype like #{coursetype}
+            </if>
+            <if test="type!=null and type!=''">
+                and coursetype like #{type}
+            </if>
+        </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+  <!--   查看该分类的课程总数 -->
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        select count(*) from t_course
+        <where>
+            <if test="coursetype!=null and coursetype!='' ">
+                and coursetype like #{coursetype}
+            </if>
+        </where>
+    </select>
+    <!-- 记录该学生总的选课数 -->
+    <select id="findCoursetotal" parameterType="Map" resultType="Integer">
+    select count(*) from t_course c left  
+        join t_course_student cs  on c.id=cs.courseid left join t_student s on  
+        cs.studentsid=s.id 
+         <where>
+            <if test="id!=null and id!=''">
+               and s.id = #{id}
+            </if>
+        </where>
+    </select>
+    <!-- 查看分页的全部课程 -->
+    <select id="findCourse" parameterType="Map" resultMap ="StudentCourseMap">
+    select c.* from t_course c left  
+        join t_course_student cs  on c.id=cs.courseid left join t_student s on  
+        cs.studentsid=s.id 
+         <where>
+            <if test="id!=null and id!=''">
+               and s.id = #{id}
+            </if>
+        </where>
+         <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+   <!--  查看具体一门课程 -->
+   <select id="oneCourse" parameterType="int" resultMap ="StudentCourseMap">
+   select * from t_course where id=#{id}
+   </select>
+   <!-- 多对多,先删除他们的联系 -->
+    <delete id="deleteCourseS" parameterType="Map">  
+        delete from t_course_student  
+        <where>  
+            <if test="studentsid!=null||studentsid!=''">studentsid=#{studentsid}</if>  
+            <if test="courseid!=null || courseid!=''">and courseid=#{courseid}</if>  
+        </where>  
+    </delete>  
+   <!-- 退课，删除选了课的记录 -->
+   <delete id="deleteByPrimaryKey" parameterType="int" >
+    delete from t_course where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateCourse" parameterType="com.cl.ssm.pojo.Course" >
+    update t_course
+    set coursename = #{coursename,jdbcType=VARCHAR},
+      courseclass = #{courseclass,jdbcType=VARCHAR},
+      coursetime = #{coursetime,jdbcType=VARCHAR},
+      coursebord = #{coursebord,jdbcType=REAL},
+      coursecount = #{coursecount,jdbcType=INTEGER},
+      coursesy = #{coursesy,jdbcType=INTEGER},
+      coursepeople = #{coursepeople,jdbcType=INTEGER},
+      cotein = #{cotein,jdbcType=VARCHAR},
+      coursetype = #{coursetype,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      courseteacherid = #{courseteacherid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ <!--  <sql id="Base_Column_List" >
+    id, coursename, courseclass, coursetime, coursebord, coursecount, coursesy, coursepeople, 
+    cotein, coursetype, type, courseteacherid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="andy.model.Course" >
+    insert into t_course (id, coursename, courseclass, 
+      coursetime, coursebord, coursecount, 
+      coursesy, coursepeople, cotein, 
+      coursetype, type, courseteacherid
+      )
+    values (#{id,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, #{courseclass,jdbcType=VARCHAR}, 
+      #{coursetime,jdbcType=VARCHAR}, #{coursebord,jdbcType=REAL}, #{coursecount,jdbcType=INTEGER}, 
+      #{coursesy,jdbcType=INTEGER}, #{coursepeople,jdbcType=INTEGER}, #{cotein,jdbcType=VARCHAR}, 
+      #{coursetype,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{courseteacherid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="andy.model.Course" >
+    insert into t_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coursename != null" >
+        coursename,
+      </if>
+      <if test="courseclass != null" >
+        courseclass,
+      </if>
+      <if test="coursetime != null" >
+        coursetime,
+      </if>
+      <if test="coursebord != null" >
+        coursebord,
+      </if>
+      <if test="coursecount != null" >
+        coursecount,
+      </if>
+      <if test="coursesy != null" >
+        coursesy,
+      </if>
+      <if test="coursepeople != null" >
+        coursepeople,
+      </if>
+      <if test="cotein != null" >
+        cotein,
+      </if>
+      <if test="coursetype != null" >
+        coursetype,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="courseteacherid != null" >
+        courseteacherid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseclass != null" >
+        #{courseclass,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetime != null" >
+        #{coursetime,jdbcType=VARCHAR},
+      </if>
+      <if test="coursebord != null" >
+        #{coursebord,jdbcType=REAL},
+      </if>
+      <if test="coursecount != null" >
+        #{coursecount,jdbcType=INTEGER},
+      </if>
+      <if test="coursesy != null" >
+        #{coursesy,jdbcType=INTEGER},
+      </if>
+      <if test="coursepeople != null" >
+        #{coursepeople,jdbcType=INTEGER},
+      </if>
+      <if test="cotein != null" >
+        #{cotein,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetype != null" >
+        #{coursetype,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="courseteacherid != null" >
+        #{courseteacherid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="andy.model.Course" >
+    update t_course
+    <set >
+      <if test="coursename != null" >
+        coursename = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseclass != null" >
+        courseclass = #{courseclass,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetime != null" >
+        coursetime = #{coursetime,jdbcType=VARCHAR},
+      </if>
+      <if test="coursebord != null" >
+        coursebord = #{coursebord,jdbcType=REAL},
+      </if>
+      <if test="coursecount != null" >
+        coursecount = #{coursecount,jdbcType=INTEGER},
+      </if>
+      <if test="coursesy != null" >
+        coursesy = #{coursesy,jdbcType=INTEGER},
+      </if>
+      <if test="coursepeople != null" >
+        coursepeople = #{coursepeople,jdbcType=INTEGER},
+      </if>
+      <if test="cotein != null" >
+        cotein = #{cotein,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetype != null" >
+        coursetype = #{coursetype,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="courseteacherid != null" >
+        courseteacherid = #{courseteacherid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="andy.model.Course" >
+    update t_course
+    set coursename = #{coursename,jdbcType=VARCHAR},
+      courseclass = #{courseclass,jdbcType=VARCHAR},
+      coursetime = #{coursetime,jdbcType=VARCHAR},
+      coursebord = #{coursebord,jdbcType=REAL},
+      coursecount = #{coursecount,jdbcType=INTEGER},
+      coursesy = #{coursesy,jdbcType=INTEGER},
+      coursepeople = #{coursepeople,jdbcType=INTEGER},
+      cotein = #{cotein,jdbcType=VARCHAR},
+      coursetype = #{coursetype,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      courseteacherid = #{courseteacherid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update> -->
+</mapper>
